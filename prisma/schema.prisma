@@ -10,31 +10,55 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  // uncomment next line if you use Prisma <5.10
-  directUrl = env("DATABASE_URL_UNPOOLED")
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model User {
-  id           String    @id
-  username     String    @unique
+  id           String        @id
+  username     String        @unique
   displayName  String
-  email        String?   @unique
+  email        String?       @unique
   passwordHash String?
-  googleId     String?   @unique
+  googleId     String?       @unique
   avatarUrl    String?
   bio          String?
   sessions     Session[]
-  createdAt    DateTime  @default(now())
+  createdAt    DateTime      @default(now())
+  employee     Empoylee[]
+  EmpoyleInfo  EmpoyleInfo[]
 
   @@map("users")
 }
 
 model Session {
-  id       String   @id
-  userId   String
+  id        String   @id
+  userId    String
   expiresAt DateTime
-  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("sessions")
+}
+
+model Empoylee {
+  id          String        @id @default(cuid()) @map("_id")
+  srno        Int?
+  name        String
+  email       String?
+  address     String
+  salary      Int
+  userId      String?
+  users       User?         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  EmpoyleInfo EmpoyleInfo[]
+}
+
+model EmpoyleInfo {
+  id        String    @id @default(cuid()) @map("_id")
+  active    Boolean?
+  employeId String
+  employes  Empoylee? @relation(fields: [employeId], references: [id], onDelete: Cascade)
+  userId    String
+  users     User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
