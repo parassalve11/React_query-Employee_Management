@@ -17,7 +17,7 @@ const employe = await db.empoylee.findFirst({
   where:{srno:0}
 })
 
-   await db.empoylee.updateMany({
+  await db.empoylee.updateMany({
     where:{
       id:employe?.id 
     },
@@ -38,16 +38,7 @@ const employe = await db.empoylee.findFirst({
     },
   });
 
-  await db.empoylee.updateMany({
-    where:{
-      id:employe?.id 
-    },
-    data:{
-      srno:{
-        increment:1
-      }
-    }
-  })
+ 
 
   redirect("/");
 }

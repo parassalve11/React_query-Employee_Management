@@ -5,8 +5,11 @@ import { editEmploye } from "./actions";
 
 
 
-export default function EditEmployeForm(){
-    
+
+export default  function EditEmployeForm(){
+
+   
+  
     return(
         <form action={editEmploye} className="space-y-5">
             <Input 
@@ -23,7 +26,7 @@ export default function EditEmployeForm(){
             type="email"
             placeholder="Email"
             className="w-full"
-            
+           
             />
             <Input
             required
@@ -38,7 +41,7 @@ export default function EditEmployeForm(){
             placeholder="Salary"
             className="w-full"
             type="number"
-            
+           
             />
 
             <LoadingButton2 type="submit" className="w-full font-semibold">Submit</LoadingButton2>

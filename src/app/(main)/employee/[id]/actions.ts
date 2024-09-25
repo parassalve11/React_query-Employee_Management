@@ -17,7 +17,7 @@ export async function editEmploye(formData: FormData) {
   const name = formData.get("name")?.toString();
   const email = formData.get("email")?.toString();
   const address = formData.get("address")?.toString();
-  const salary = Number(formData.get("salary"));
+  const salary = Number(formData.get("salary"))
 
   
 
@@ -32,17 +32,12 @@ export async function editEmploye(formData: FormData) {
     
   // const employe = await getEmployee();
  
-
-  const employe = await db.empoylee.findFirst({
-    where:{
-      srno:0
-    }
-  })
+  const employee = await db.empoylee.findFirst()
  
 
-  await db.empoylee.updateMany({
+  await db.empoylee.update({
     where:{
-        id: employe?.id
+        id: employee?.id
     },
     data: {
       name,
@@ -54,5 +49,3 @@ export async function editEmploye(formData: FormData) {
 
   redirect("/");
 }
-
-

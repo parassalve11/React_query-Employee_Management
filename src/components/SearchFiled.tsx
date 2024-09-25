@@ -19,7 +19,7 @@ export default function SearchField(){
     return(
         <form onSubmit={handleSubmit}  action="/search">
             <div className="relative">
-                <Input type="text" placeholder="Search..." className="pe-32" />
+                <Input name="q" placeholder="Search..." className="pe-32" />
                 <Search className="absolute top-1/2 right-3 -translate-y-1/2 trnasform text-muted-foreground" />
             </div>
         </form>

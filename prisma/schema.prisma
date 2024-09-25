@@ -42,6 +42,7 @@ model Session {
 
 model Empoylee {
   id          String        @id @default(cuid()) @map("_id")
+  noting       Int? 
   srno        Int?
   name        String
   email       String?
