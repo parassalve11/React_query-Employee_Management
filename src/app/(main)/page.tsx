@@ -2,6 +2,7 @@ import AddEmpolyeeDialog from "@/components/AddEmpolyeeDiaLog";
 import EmployeRow from "@/components/EmpoyeeRow";
 import db from "@/lib/db";
 import Link from "next/link";
+import AddEmployeePage from "./add-empoyee/page";
 
 
 export default async function Home() {
@@ -10,10 +11,10 @@ export default async function Home() {
     orderBy:{id:'desc'}
   })
   return (
-    <div className=' flex justify-center items-center h-screen'>
+    <div className=' flex flex-col w-full  '>
         
-    <div className="flex flex-col gap-y-10">
-    <AddEmpolyeeDialog />
+    <div className="flex flex-col gap-y-10 ">
+    <AddEmployeePage />
         <div className="-m-1.5 overflow-x-auto">
             <div className="p-1.5 min-w-full inline-block align-middle">
                 <div className="border rounded-lg shadow overflow-hidden ">

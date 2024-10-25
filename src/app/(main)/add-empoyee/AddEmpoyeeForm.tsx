@@ -1,14 +1,20 @@
-
+'use client'
 import { Input } from "@/components/ui/input";
-import { addEmploye } from "./actions";
+
 import LoadingButton2 from "@/components/LoadingButon2";
+
+import { addEmploye } from "./actions";
+import { useRef, useState } from "react";
 
 
 
 export default function AddEmployeForm(){
-    
+    const ref = useRef<HTMLFormElement>(null)
     return(
-        <form action={addEmploye} className="space-y-5">
+        <form  ref={ref}  action={async(formData) =>{
+            await addEmploye(formData)
+            ref.current?.reset()
+        }} className=" grid items-center grid-cols-2   gap-4">
             <Input 
             required
             name="name"
@@ -36,7 +42,10 @@ export default function AddEmployeForm(){
             type="number"
             />
 
-            <LoadingButton2 type="submit" className="w-full font-semibold">Submit</LoadingButton2>
+           <div className="flex items-center justify-end">
+           <LoadingButton2 type="submit"  className="">Submit</LoadingButton2>
+           </div>
+           
         </form>
     )
 }

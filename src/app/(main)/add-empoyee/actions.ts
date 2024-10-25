@@ -41,4 +41,5 @@ const employe = await db.empoylee.findFirst({
  
 
   redirect("/");
+  document
 }

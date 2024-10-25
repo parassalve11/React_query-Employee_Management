@@ -17,7 +17,7 @@ return(
     <SessionProvider value={session}>
         <div className="h-screen flex flex-col">
        <Navbar />
-       <div className="mx-auto max-w-7xl">
+       <div className="mx-auto max-w-7xl flex w-full grow p-5 gap-5">
         {children}
        </div>
         </div>
